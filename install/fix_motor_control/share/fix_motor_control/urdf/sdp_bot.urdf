@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<robot name="sdp_bot">
+
+	<material name="black">
+		<color rgba="0 0 0 1" />
+	</material>
+
+	<material name="yellow">
+		<color rgba="1 1 0 1" />
+	</material>
+
+	<material name="green">
+		<color rgba="0 1 0 1" />
+	</material>
+
+	<link name="base_footprint" />
+
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<box size="0.2413 0.1016 0.0635" />
+			</geometry>
+			<origin xyz="0 0 0 " rpy="0 0 0" />
+			<material name="black" />
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.2413 0.1016 0.0635" />
+			</geometry>
+			<origin xyz="0 0 0 " rpy="0 0 0" />
+		</collision>
+	</link>
+
+	<link name="lidar_link">
+		<visual>
+			<geometry>
+				<cylinder radius="0.03502" length="0.05715" />
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<material name="green" />
+		</visual> 
+		<collision>
+			<geometry>
+				<box size="0.07004 0.07004 0.05715" />	
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+		</collision>
+	</link>
+
+	<link name="back_left_wheel">
+		<visual>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+			<material name="yellow" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+		</collision>
+	</link>
+
+	<link name="back_right_wheel">
+		<visual>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+			<material name="yellow" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+		</collision>
+	</link>
+
+	<link name="front_left_wheel">
+		<visual>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+			<material name="yellow" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+		</collision>
+	</link>
+
+	<link name="front_right_wheel">
+		<visual>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+			<material name="yellow" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.03175" length="0.0254"/>	
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.57 0 0" />
+		</collision>
+	</link>
+
+	<joint name="base_joint" type="fixed">
+		<parent link="base_footprint" />
+		<child link="base_link" />
+		<origin xyz="0 0 0.07747" rpy="0 0 0" />	
+	</joint>
+
+	<joint name="base_lidar_joint" type="fixed">
+		<parent link="base_link" />
+		<child link="lidar_link" />
+		<origin xyz="-0.07 0 0.060335" rpy="0 0 0" />
+	</joint>
+
+	<joint name="base_back_left_wheel_joint" type="continuous">
+		<parent link="base_link" />
+		<child link="back_left_wheel" />
+		<origin xyz="-0.060335 0.0635 -0.04572" rpy="0 0 0" />
+		<axis xyz="0 1 0" />
+	</joint>
+
+	<joint name="base_back_right_wheel_joint" type="continuous">
+		<parent link="base_link" />
+		<child link="back_right_wheel" />
+		<origin xyz="-0.060335 -0.0635 -0.04572" rpy="0 0 0" />
+		<axis xyz="0 1 0" />
+	</joint>
+
+	<joint name="base_front_left_wheel_joint" type="continuous">
+		<parent link="base_link" />
+		<child link="front_left_wheel" />
+		<origin xyz="0.060335 0.0635 -0.04572" rpy="0 0 0" />
+		<axis xyz="0 1 0" />
+	</joint>
+
+	<joint name="base_front_right_wheel_joint" type="continuous">
+		<parent link="base_link" />
+		<child link="front_right_wheel" />
+		<origin xyz="0.060335 -0.0635 -0.04572" rpy="0 0 0" />
+		<axis xyz="0 1 0" />
+	</joint>
+</robot>

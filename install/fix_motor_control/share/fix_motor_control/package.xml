@@ -13,6 +13,7 @@
   <exec_depend>nav_msgs</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
 
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher</exec_depend>
@@ -25,5 +26,6 @@
 
   <export>
     <build_type>ament_python</build_type>
+    <launch>display.launch.py</launch>
   </export>
 </package>
