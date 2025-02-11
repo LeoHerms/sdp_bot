@@ -1,0 +1,23 @@
+[1.060s] Invoking command in '/home/leonciao/Desktop/sdp_bot/src/sdp_bot': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/leonciao/Desktop/sdp_bot/build/sdp_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sdp_bot build --build-base /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build install --record /home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log --single-version-externally-managed install_data
+[1.419s] running egg_info
+[1.448s] writing ../../build/sdp_bot/sdp_bot.egg-info/PKG-INFO
+[1.448s] writing dependency_links to ../../build/sdp_bot/sdp_bot.egg-info/dependency_links.txt
+[1.448s] writing entry points to ../../build/sdp_bot/sdp_bot.egg-info/entry_points.txt
+[1.448s] writing requirements to ../../build/sdp_bot/sdp_bot.egg-info/requires.txt
+[1.448s] writing top-level names to ../../build/sdp_bot/sdp_bot.egg-info/top_level.txt
+[1.507s] reading manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+[1.507s] adding license file 'LICENSE'
+[1.508s] writing manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+[1.508s] running build
+[1.509s] running build_py
+[1.509s] running install
+[1.517s] running install_lib
+[1.548s] running install_data
+[1.548s] copying launch/display3.launch.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch
+[1.548s] running install_egg_info
+[1.580s] removing '/home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info' (and everything under it)
+[1.580s] Copying ../../build/sdp_bot/sdp_bot.egg-info to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info
+[1.582s] running install_scripts
+[1.763s] Installing control script to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/sdp_bot
+[1.763s] writing list of installed files to '/home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log'
+[1.797s] Invoked command in '/home/leonciao/Desktop/sdp_bot/src/sdp_bot' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/leonciao/Desktop/sdp_bot/build/sdp_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sdp_bot build --build-base /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build install --record /home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log --single-version-externally-managed install_data

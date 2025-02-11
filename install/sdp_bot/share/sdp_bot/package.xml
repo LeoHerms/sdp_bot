@@ -22,6 +22,9 @@
   <exec_depend>rviz2</exec_depend>
   <exec_depend>xacro</exec_depend>
 
+  <!-- <exec_depend>ros_gz_bridge</exec_depend> UNCOMMENT FOR gz_launch -->
+  <!-- <exec_depend>ros_gz_sim</exec_depend> UNCOMMENT FOR gz_launch -->
+
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>

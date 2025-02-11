@@ -166,6 +166,31 @@
 		</xacro:inertial_cylinder>
 	</link>
 
+	<link name='imu_link'>
+		<visual>
+			<geometry>
+				<box size="0.025 0.02 0.0025" />
+			</geometry>
+			<origin xyz="0 0 0 " rpy="0 0 0" />
+			<material name="green" />
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.025 0.02 0.0025" />
+			</geometry>
+			<origin xyz="0 0 0 " rpy="0 0 0" />
+		</collision>
+		<xacro:inertial_box mass ="0.1" x="0.1" y="0.1" z="0.1">
+			<origin xyz="0 0 0" rpy="0 0 0" />
+		</xacro:inertial_box>
+	</link>
+
+	<joint name='imu_joint' type='fixed'>
+		<parent link="base_link" />
+		<child link="imu_link" />
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	</joint>
+
 	<joint name="base_joint" type="fixed">
 		<parent link="base_footprint" />
 		<child link="base_link" />
