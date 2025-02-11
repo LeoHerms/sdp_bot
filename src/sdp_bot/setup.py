@@ -12,6 +12,8 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/display.launch.py']),
         ('share/' + package_name + '/urdf', ['urdf/sdp_bot.urdf.xacro']),
+        ('share/' + package_name + '/urdf', ['urdf/sdp_bot_core.xacro']),
+        ('share/' + package_name + '/urdf', ['urdf/inertial_macros.xacro']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
