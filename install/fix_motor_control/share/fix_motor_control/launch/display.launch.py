@@ -8,7 +8,7 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     package_path = get_package_share_directory('fix_motor_control')
-    urdf_file = os.path.join(package_path, 'urdf', 'sdp_bot.urdf')
+    urdf_file = os.path.join(package_path, 'urdf', 'sdp_bot.urdf.xacro')
 
     return LaunchDescription([
         DeclareLaunchArgument(name='use_sim_time', default_value='false', description='Use simulation time if true'),

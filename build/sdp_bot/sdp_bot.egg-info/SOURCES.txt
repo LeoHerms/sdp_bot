@@ -10,12 +10,15 @@ setup.py
 ../../build/sdp_bot/sdp_bot.egg-info/top_level.txt
 ../../build/sdp_bot/sdp_bot.egg-info/zip-safe
 launch/display.launch.py
+launch/display2.launch.py
 resource/sdp_bot
+rviz/config.rviz
 sdp_bot/__init__.py
 sdp_bot/control.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
+urdf/all_bot.urdf
 urdf/inertial_macros.xacro
 urdf/sdp_bot.urdf.xacro
 urdf/sdp_bot_core.xacro

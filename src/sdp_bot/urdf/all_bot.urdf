@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="sdp_bot" xmlns:xacro="http://www.ros.org.wiki/xacro">
+<robot name="all_bot" xmlns:xacro="http://www.ros.org.wiki/xacro">
 
 	<xacro:macro name="inertial_sphere" params="mass radius *origin">
         <inertial>
@@ -45,7 +45,12 @@
 		<color rgba="0 1 0 1" />
 	</material>
 
-	<link name="base_footprint" />
+	<link name="base_footprint">
+        <xacro:inertial_box mass="0" x="0" y="0" z="0">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:inertial_box>
+    </link>
+
 
 	<link name="base_link">
 		<visual>
