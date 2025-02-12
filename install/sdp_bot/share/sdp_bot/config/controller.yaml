@@ -1,0 +1,36 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["left_joint"]
+    right_wheel_names: ["right_joint"]
+    wheel_separation: 0.127
+    wheel_radius: 0.03175
+    
+    use_stamped_vel: false
+    
+    # Velocity and acceleration limits
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 0.5 # m/s
+        min_velocity: -0.5
+        has_acceleration_limits: true
+        max_acceleration: 1.0
+        min_acceleration: -1.0
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 2.0
+        min_velocity: -2.0
+        has_acceleration_limits: true
+        max_acceleration: 2.0
+        min_acceleration: -2.0

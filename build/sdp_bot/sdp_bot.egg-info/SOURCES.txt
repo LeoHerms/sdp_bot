@@ -10,13 +10,16 @@ setup.py
 ../../build/sdp_bot/sdp_bot.egg-info/top_level.txt
 ../../build/sdp_bot/sdp_bot.egg-info/zip-safe
 config/bridge_config.yaml
+config/controller.yaml
 launch/display.launch.py
 launch/display_v2.launch.py
 launch/gz_display.launch.py
+launch/ros2_control_v1.launch.py
 resource/sdp_bot
 rviz/config.rviz
 sdp_bot/__init__.py
 sdp_bot/control.py
+sdp_bot/diff_drive_hardware.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py

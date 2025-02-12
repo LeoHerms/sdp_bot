@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/sdp_bot/sdp_bot.egg-info/PKG-INFO
+writing dependency_links to ../../build/sdp_bot/sdp_bot.egg-info/dependency_links.txt
+writing entry points to ../../build/sdp_bot/sdp_bot.egg-info/entry_points.txt
+writing requirements to ../../build/sdp_bot/sdp_bot.egg-info/requires.txt
+writing top-level names to ../../build/sdp_bot/sdp_bot.egg-info/top_level.txt
+reading manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying package.xml -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot
+copying launch/ros2_control_v1.launch.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch
+running install_egg_info
+removing '/home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/sdp_bot/sdp_bot.egg-info to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info
+running install_scripts
+Installing control script to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/sdp_bot
+writing list of installed files to '/home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log'

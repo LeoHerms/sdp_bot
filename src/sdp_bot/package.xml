@@ -4,9 +4,13 @@
   <name>sdp_bot</name>
   <version>0.0.0</version>
   <description>Control Node</description>
-  <maintainer email="sdp@todo.todo">sdp</maintainer>
+  <maintainer email="leoncioh@uci.edu">sdp</maintainer>
   <license>Apache-2.0</license>
 
+  <!-- ros2_control -->
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>hardware_interface</exec_depend>
+  
   <exec_depend>rclpy</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>python3_smbus</exec_depend>
