@@ -1,2 +1,0 @@
-[console_scripts]
-sdp_bot = sdp_bot.control:main

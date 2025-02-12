@@ -8,8 +8,16 @@
   <license>Apache-2.0</license>
 
   <!-- ros2_control -->
+  
   <exec_depend>ros2_control</exec_depend>
-  <exec_depend>hardware_interface</exec_depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>ros2controlcli</exec_depend>
+  <exec_depend>ros2_control_demo_description</exec_depend>
+  <exec_depend>ros2_controllers_test_nodes</exec_depend>
+
   
   <exec_depend>rclpy</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
@@ -22,12 +30,10 @@
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
   <exec_depend>rviz</exec_depend>
   <exec_depend>rviz2</exec_depend>
   <exec_depend>xacro</exec_depend>
-
-  <!-- <exec_depend>ros_gz_bridge</exec_depend> UNCOMMENT FOR gz_launch -->
-  <!-- <exec_depend>ros_gz_sim</exec_depend> UNCOMMENT FOR gz_launch -->
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
@@ -36,6 +42,6 @@
 
   <export>
     <build_type>ament_python</build_type>
-    <launch>display.launch.py</launch>
+    <hardware_interface plugin="sdp_bot/diff_drive_hardware_plugin.xml"/>
   </export>
 </package>

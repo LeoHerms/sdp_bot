@@ -1,2 +1,0 @@
-[console_scripts]
-fix_motor_control = fix_motor_control.fix_motor_control:main

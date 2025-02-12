@@ -1,0 +1,7 @@
+<library path="sdp_bot.diff_drive_hardware">
+    <class  name="sdp_bot.diff_drive_hardware/DiffDriveHardwareInterface"
+            type="sdp_bot.diff_drive_hardware:DiffDriveHardwareInterface"
+            base_class_type="hardware_interface::SystemInterface">
+        <description>Custom differential drive hardware interface.</description>
+    </class>
+</library>

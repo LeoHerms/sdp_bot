@@ -1,4 +1,5 @@
 LICENSE
+diff_drive_hardware.xml
 package.xml
 setup.cfg
 setup.py
@@ -6,17 +7,17 @@ setup.py
 ../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt
 ../../build/sdp_bot/sdp_bot.egg-info/dependency_links.txt
 ../../build/sdp_bot/sdp_bot.egg-info/entry_points.txt
-../../build/sdp_bot/sdp_bot.egg-info/requires.txt
 ../../build/sdp_bot/sdp_bot.egg-info/top_level.txt
 ../../build/sdp_bot/sdp_bot.egg-info/zip-safe
-config/bridge_config.yaml
 config/controller.yaml
 launch/display.launch.py
 launch/display_v2.launch.py
-launch/gz_display.launch.py
+launch/display_v3.launch.py
 launch/ros2_control_v1.launch.py
+launch/rplidar_test.launch.py
 resource/sdp_bot
 rviz/config.rviz
+rviz/config_v1.rviz
 sdp_bot/__init__.py
 sdp_bot/control.py
 sdp_bot/diff_drive_hardware.py
@@ -24,7 +25,3 @@ test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
 urdf/all_bot.urdf
-urdf/inertial_macros.xacro
-urdf/sdp_bot.urdf.xacro
-urdf/sdp_bot_core.xacro
-world/my_world.sdf
