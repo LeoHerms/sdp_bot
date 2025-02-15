@@ -7,6 +7,10 @@ from launch.conditions import IfCondition
 from ament_index_python.packages import get_package_share_directory
 import os
 
+# This was perhaps the most recent launch file (Calls the custom control node)
+# This launch file integrates the robot state publisher, control node and RViz2
+# The control node publishes joint states, so no need to worry about that
+
 def generate_launch_description():
     pkg_share = get_package_share_directory('sdp_bot')
     

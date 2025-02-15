@@ -227,30 +227,4 @@
 		<axis xyz="0 1 0" />
 	</joint>
 
-	<ros2_control name="diff_drive" type="system">
-		<hardware>
-			<plugin>diff_drive_hardware.DiffDriveHardwareInterface</plugin>
-		</hardware>
-		<joint name="base_back_left_wheel_joint">
-			<command_interface name="velocity"/>
-			<state_interface name="position"/>
-			<state_interface name="velocity"/>
-		</joint>
-		<joint name="base_front_left_wheel_joint">
-			<command_interface name="velocity"/>
-			<state_interface name="position"/>
-			<state_interface name="velocity"/>
-		</joint>
-		<joint name="base_back_right_wheel_joint">
-			<command_interface name="velocity"/>
-			<state_interface name="position"/>
-			<state_interface name="velocity"/>
-		</joint>
-		<joint name="base_front_right_wheel_joint">
-			<command_interface name="velocity"/>
-			<state_interface name="position"/>
-			<state_interface name="velocity"/>
-		</joint>
-	</ros2_control>
-
 </robot>

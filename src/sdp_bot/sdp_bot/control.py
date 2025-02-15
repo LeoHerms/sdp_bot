@@ -76,12 +76,16 @@ class MotorController(Node):
             self.current_linear_x = msg.linear.x
             self.current_angular_z = msg.angular.z
 
+            # Separate scaling factors
+            LINEAR_SCALE = 120  # For forward/backward
+            ANGULAR_SCALE = 60  # Reduced scale for turning
+
             # Scale factor for turns (reduces aggressive turning)
             turn_scale = max(0.3, 0.8 - abs(msg.linear.x) / 0.5)  # Adjust dynamically
 
-            # Convert to left and right wheel speeds
-            left_speed = (msg.linear.x - turn_scale * msg.angular.z) * 120       # Was 120
-            right_speed = (msg.linear.x + turn_scale * msg.angular.z) * 120      # Was 120
+            # Convert to left and right wheel speeds with separate scaling
+            left_speed = msg.linear.x * LINEAR_SCALE - msg.angular.z * ANGULAR_SCALE * turn_scale
+            right_speed = msg.linear.x * LINEAR_SCALE + msg.angular.z * ANGULAR_SCALE * turn_scale
 
             # Determine directions and ensure speed limits
             left_dir = 1 if left_speed >= 0 else 0

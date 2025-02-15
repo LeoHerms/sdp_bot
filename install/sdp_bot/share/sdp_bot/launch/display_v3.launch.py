@@ -7,6 +7,8 @@ from launch.conditions import IfCondition
 from ament_index_python.packages import get_package_share_directory
 import os
 
+# This was perhaps the most recent launch file (Calls the custom control node)
+
 def generate_launch_description():
     pkg_share = get_package_share_directory('sdp_bot')
     

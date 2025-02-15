@@ -6,6 +6,8 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 import os
 
+# This launch file just publishes the robot state, joint states and launches RViz2 with a config
+
 def generate_launch_description():
     pkg_share = FindPackageShare(package='sdp_bot').find('sdp_bot')
     default_model_path = os.path.join(pkg_share, 'urdf', 'all_bot.urdf')

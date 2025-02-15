@@ -6,6 +6,8 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 
+# This display launch file just publishes the robot state and launches RViz2
+
 def generate_launch_description():
     package_path = get_package_share_directory('sdp_bot')
     urdf_file = os.path.join(package_path, 'urdf', 'sdp_bot.urdf.xacro')
