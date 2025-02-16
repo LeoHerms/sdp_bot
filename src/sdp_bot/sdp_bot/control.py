@@ -9,6 +9,9 @@ from math import sin, cos
 import smbus
 import time
 
+# WARNING: Need to remove transform from odom to base_link,
+# as it will be published by the robot_localization node (or at least I think so)
+
 class MotorController(Node):
     def __init__(self):
         super().__init__('motor_controller')
