@@ -43,6 +43,5 @@
 
   <export>
     <build_type>ament_python</build_type>
-    <hardware_interface plugin="sdp_bot/diff_drive_hardware_plugin.xml"/>
   </export>
 </package>
