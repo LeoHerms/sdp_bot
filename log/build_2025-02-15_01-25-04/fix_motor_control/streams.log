@@ -1,0 +1,42 @@
+[2.210s] Invoking command in '/home/leonciao/Desktop/sdp_bot/src/fix_motor_control': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/leonciao/Desktop/sdp_bot/build/fix_motor_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fix_motor_control build --build-base /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build install --record /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/install.log --single-version-externally-managed install_data
+[2.801s] running egg_info
+[2.802s] creating ../../build/fix_motor_control/fix_motor_control.egg-info
+[2.851s] writing ../../build/fix_motor_control/fix_motor_control.egg-info/PKG-INFO
+[2.851s] writing dependency_links to ../../build/fix_motor_control/fix_motor_control.egg-info/dependency_links.txt
+[2.851s] writing entry points to ../../build/fix_motor_control/fix_motor_control.egg-info/entry_points.txt
+[2.852s] writing requirements to ../../build/fix_motor_control/fix_motor_control.egg-info/requires.txt
+[2.852s] writing top-level names to ../../build/fix_motor_control/fix_motor_control.egg-info/top_level.txt
+[2.852s] writing manifest file '../../build/fix_motor_control/fix_motor_control.egg-info/SOURCES.txt'
+[2.948s] reading manifest file '../../build/fix_motor_control/fix_motor_control.egg-info/SOURCES.txt'
+[2.948s] adding license file 'LICENSE'
+[2.949s] writing manifest file '../../build/fix_motor_control/fix_motor_control.egg-info/SOURCES.txt'
+[2.949s] running build
+[2.949s] running build_py
+[2.950s] creating /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build
+[2.950s] creating /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build/lib
+[2.950s] creating /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build/lib/fix_motor_control
+[2.950s] copying fix_motor_control/fix_motor_control.py -> /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build/lib/fix_motor_control
+[2.950s] copying fix_motor_control/__init__.py -> /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build/lib/fix_motor_control
+[2.951s] running install
+[2.963s] running install_lib
+[3.010s] creating /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages/fix_motor_control
+[3.010s] copying /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build/lib/fix_motor_control/fix_motor_control.py -> /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages/fix_motor_control
+[3.010s] copying /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build/lib/fix_motor_control/__init__.py -> /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages/fix_motor_control
+[3.011s] byte-compiling /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages/fix_motor_control/fix_motor_control.py to fix_motor_control.cpython-312.pyc
+[3.015s] byte-compiling /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages/fix_motor_control/__init__.py to __init__.cpython-312.pyc
+[3.015s] running install_data
+[3.015s] creating /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/ament_index
+[3.016s] creating /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/ament_index/resource_index
+[3.016s] creating /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/ament_index/resource_index/packages
+[3.016s] copying resource/fix_motor_control -> /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/ament_index/resource_index/packages
+[3.016s] copying package.xml -> /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/fix_motor_control
+[3.017s] creating /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/fix_motor_control/launch
+[3.017s] copying launch/display.launch.py -> /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/fix_motor_control/launch
+[3.017s] creating /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/fix_motor_control/urdf
+[3.017s] copying urdf/sdp_bot.urdf.xacro -> /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/share/fix_motor_control/urdf
+[3.018s] running install_egg_info
+[3.073s] Copying ../../build/fix_motor_control/fix_motor_control.egg-info to /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages/fix_motor_control-0.0.0-py3.12.egg-info
+[3.074s] running install_scripts
+[3.373s] Installing fix_motor_control script to /home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/fix_motor_control
+[3.374s] writing list of installed files to '/home/leonciao/Desktop/sdp_bot/build/fix_motor_control/install.log'
+[3.432s] Invoked command in '/home/leonciao/Desktop/sdp_bot/src/fix_motor_control' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/leonciao/Desktop/sdp_bot/build/fix_motor_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/leonciao/Desktop/sdp_bot/install/fix_motor_control/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fix_motor_control build --build-base /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/build install --record /home/leonciao/Desktop/sdp_bot/build/fix_motor_control/install.log --single-version-externally-managed install_data

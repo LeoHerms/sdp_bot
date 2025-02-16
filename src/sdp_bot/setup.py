@@ -13,10 +13,14 @@ setup(
         ('share/' + package_name + '/launch', ['launch/display.launch.py']),
         ('share/' + package_name + '/launch', ['launch/display_v2.launch.py']),
         ('share/' + package_name + '/launch', ['launch/display_v3.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/display_v4.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/imu_lidar_test.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/imu_lidar_test_v2.launch.py']),
         ('share/' + package_name + '/launch', ['launch/imu_test.launch.py']),
         ('share/' + package_name + '/launch', ['launch/rplidar_test.launch.py']),
         ('share/' + package_name + '/rviz', ['rviz/config.rviz']),
         ('share/' + package_name + '/rviz', ['rviz/config_v2.rviz']),
+        ('share/' + package_name + '/rviz', ['rviz/config_imu_lidar.rviz']),
         ('share/' + package_name + '/urdf', ['urdf/all_bot.urdf']),
     ],
     zip_safe=True,
@@ -29,6 +33,7 @@ setup(
         'console_scripts': [
             'control = sdp_bot.control:main',
             'bno055 = sdp_bot.bno055:main',
+            'imu_tf_broadcaster = sdp_bot.imu_transform:main',
         ],
     },
 )
