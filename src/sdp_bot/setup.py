@@ -14,6 +14,7 @@ setup(
         ('share/' + package_name + '/launch', ['launch/display_v2.launch.py']),
         ('share/' + package_name + '/launch', ['launch/display_v3.launch.py']),
         ('share/' + package_name + '/launch', ['launch/display_v4.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/display_v5.launch.py']),
         ('share/' + package_name + '/launch', ['launch/imu_lidar_test.launch.py']),
         ('share/' + package_name + '/launch', ['launch/imu_lidar_test_v2.launch.py']),
         ('share/' + package_name + '/launch', ['launch/imu_test.launch.py']),

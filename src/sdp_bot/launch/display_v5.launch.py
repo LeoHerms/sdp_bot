@@ -75,12 +75,23 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Robot localization node
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_node',
+        output='screen',
+        parameters=[os.path.join(pkg_share, 'config/ekf.yaml'), {'use_sim_time': LaunchConfiguration('use_sim_time')}]
+    )
+
     # Create and return launch description
     return LaunchDescription([
+        DeclareLaunchArgument(name='use_sim_time', default_value='false', description='Flag to enable use_sim_time'),
         use_sim_time,
         robot_state_publisher,
         imu_node,
         lidar_node,
         control_node,
-        rviz_node
+        rviz_node,
+        robot_localization_node
     ])
