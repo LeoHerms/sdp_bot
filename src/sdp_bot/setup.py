@@ -23,6 +23,8 @@ setup(
         ('share/' + package_name + '/rviz', ['rviz/config_v2.rviz']),
         ('share/' + package_name + '/rviz', ['rviz/config_imu_lidar.rviz']),
         ('share/' + package_name + '/urdf', ['urdf/all_bot.urdf']),
+        ('share/' + package_name + '/config', ['config/ekf.yaml']),
+        ('share/' + package_name + '/config', ['config/nav2_params.yaml']),
     ],
     zip_safe=True,
     maintainer='sdp',

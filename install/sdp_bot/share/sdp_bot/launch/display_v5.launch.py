@@ -92,5 +92,6 @@ def generate_launch_description():
         imu_node,
         lidar_node,
         control_node,
+        rviz_node,
         robot_localization_node
     ])

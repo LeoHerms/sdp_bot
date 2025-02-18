@@ -12,6 +12,7 @@
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/display_v2.launch.py
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/display_v3.launch.py
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/display_v4.launch.py
+/home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/display_v5.launch.py
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/imu_lidar_test.launch.py
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/imu_lidar_test_v2.launch.py
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch/imu_test.launch.py
@@ -20,6 +21,7 @@
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/rviz/config_v2.rviz
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/rviz/config_imu_lidar.rviz
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/urdf/all_bot.urdf
+/home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/config/ekf.yaml
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info/dependency_links.txt
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info/PKG-INFO
 /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info/top_level.txt

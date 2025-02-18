@@ -46,7 +46,7 @@ class MotorController(Node):
         self.odom_pub = self.create_publisher(Odometry, 'odom', 10)
         
         # TF2 broadcaster
-        self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
+        # self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
 
         # Subscribe to cmd_vel topic
         self.subscription = self.create_subscription(
@@ -156,16 +156,16 @@ class MotorController(Node):
             self.odom_pub.publish(odom)
             
             # Broadcast transform
-            t = TransformStamped()
-            t.header.stamp = current_time.to_msg()
-            t.header.frame_id = 'odom'
-            t.child_frame_id = 'base_link'
-            t.transform.translation.x = self.x
-            t.transform.translation.y = self.y
-            t.transform.rotation.z = sin(self.theta / 2.0)
-            t.transform.rotation.w = cos(self.theta / 2.0)
+            # t = TransformStamped()
+            # t.header.stamp = current_time.to_msg()
+            # t.header.frame_id = 'odom'
+            # t.child_frame_id = 'base_link'
+            # t.transform.translation.x = self.x
+            # t.transform.translation.y = self.y
+            # t.transform.rotation.z = sin(self.theta / 2.0)
+            # t.transform.rotation.w = cos(self.theta / 2.0)
             
-            self.tf_broadcaster.sendTransform(t)
+            # self.tf_broadcaster.sendTransform(t)
             
             self.last_update_time = current_time
             
@@ -192,7 +192,7 @@ class MotorController(Node):
 def main():
     rclpy.init()
     motor_controller = MotorController()
-    motor_controller.test_motors()
+    # motor_controller.test_motors()
 
     try:
         rclpy.spin(motor_controller)
