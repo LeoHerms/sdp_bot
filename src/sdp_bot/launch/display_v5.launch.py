@@ -5,7 +5,6 @@ from launch.substitutions import LaunchConfiguration, Command
 from ament_index_python.packages import get_package_share_directory
 import os
 
-# HAVE NOT TESTED YET
 
 def generate_launch_description():
     # Get the package share directory
