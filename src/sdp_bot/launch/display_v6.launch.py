@@ -5,6 +5,8 @@ from launch.substitutions import LaunchConfiguration, Command
 from ament_index_python.packages import get_package_share_directory
 import os
 
+# Move the nav2 and lifecycle stuff to another launch file (to run on powerful laptop)
+
 def generate_launch_description():
     # Get the package share directory
     pkg_share = get_package_share_directory('sdp_bot')
