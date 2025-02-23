@@ -45,6 +45,10 @@ class MotorController(Node):
         self.joint_pub = self.create_publisher(JointState, 'joint_states', 10)
         self.odom_pub = self.create_publisher(Odometry, 'odom', 10)
         
+        # Robot linear scale correction
+        self.linear_scale_correction = 0.5
+        self.angular_scale_correction = 1
+
         # TF2 broadcaster
         # self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
 
@@ -110,9 +114,13 @@ class MotorController(Node):
             current_time = self.get_clock().now()
             dt = (current_time - self.last_update_time).nanoseconds / 1e9
             
+            # Apply the scale correction
+            actual_linear = self.current_linear_x * self.linear_scale_correction
+            actual_angular = self.current_angular_z * self.angular_scale_correction
+
             # Calculate wheel velocities (all wheels on each side move at the same speed)
-            left_velocity = (self.current_linear_x - self.current_angular_z * self.wheel_separation / 2.0) / self.wheel_radius
-            right_velocity = (self.current_linear_x + self.current_angular_z * self.wheel_separation / 2.0) / self.wheel_radius
+            left_velocity = (actual_linear - actual_angular * self.wheel_separation / 2.0) / self.wheel_radius
+            right_velocity = (actual_linear + actual_angular * self.wheel_separation / 2.0) / self.wheel_radius
             
             # Update all wheel positions
             # Front left and rear left
@@ -123,9 +131,9 @@ class MotorController(Node):
             self.wheel_positions[3] += right_velocity * dt
             
             # Update robot pose
-            delta_x = self.current_linear_x * cos(self.theta) * dt
-            delta_y = self.current_linear_x * sin(self.theta) * dt
-            delta_theta = self.current_angular_z * dt
+            delta_x = actual_linear * cos(self.theta) * dt
+            delta_y = actual_linear * sin(self.theta) * dt
+            delta_theta = actual_angular * dt
             
             self.x += delta_x
             self.y += delta_y
@@ -143,7 +151,7 @@ class MotorController(Node):
             odom = Odometry()
             odom.header.stamp = current_time.to_msg()
             odom.header.frame_id = 'odom'
-            odom.child_frame_id = 'base_link'
+            odom.child_frame_id = 'base_footprint'  # Was base_link
             
             odom.pose.pose.position.x = self.x
             odom.pose.pose.position.y = self.y
