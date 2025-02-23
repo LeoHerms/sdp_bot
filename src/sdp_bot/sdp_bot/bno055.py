@@ -110,8 +110,17 @@ class BNO055Node(Node):
             msg.linear_acceleration.z = self.accel[2]
             
             # Set covariance matrices (optional)
-            msg.orientation_covariance = [-1.0] * 9  # -1 indicates unknown
-            msg.angular_velocity_covariance = [-1.0] * 9
+            # msg.orientation_covariance = [-1.0] * 9  # -1 indicates unknown
+            # msg.angular_velocity_covariance = [-1.0] * 9
+            # Small covariance for orientation (high confidence)
+            msg.orientation_covariance = [0.0001, 0, 0,
+                                        0, 0.0001, 0,
+                                        0, 0, 0.0001]
+
+            # Higher covariance for angular velocity (lower confidence)
+            msg.angular_velocity_covariance = [0.001, 0, 0,
+                                            0, 0.001, 0,
+                                            0, 0, 0.001]
             msg.linear_acceleration_covariance = [-1.0] * 9
             
             self.imu_pub.publish(msg)
