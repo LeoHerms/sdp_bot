@@ -36,19 +36,19 @@ ekf_node:
         odom0_config: [false, false, false,
                       false, false, false,
                       true, true, false,
-                      false, false, true,
+                      false, false, false,
                       false, false, false]
-        odom0_queue_size: 10
-        odom0_pose_rejection_threshold: 25.0
-        odom0_twist_rejection_threshold: 25.0
+        # odom0_queue_size: 10
+        # odom0_pose_rejection_threshold: 25.0
+        # odom0_twist_rejection_threshold: 25.0
 
         imu0: /imu/data
         imu0_config: [false, false, false,
                       true, true, true,
+                      false, false, false,
                       true, true, true,
-                      true, true, true,
-                      false, false, false]
-        imu0_queue_size: 10
-        imu0_pose_rejection_threshold: 0.5
-        imu0_twist_rejection_threshold: 0.5
-        imu0_linear_acceleration_rejection_threshold: 0.5
+                      true, true, true]
+        # imu0_queue_size: 10
+        # imu0_pose_rejection_threshold: 0.5
+        # imu0_twist_rejection_threshold: 0.5
+        # imu0_linear_acceleration_rejection_threshold: 0.5
