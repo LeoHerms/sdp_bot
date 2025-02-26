@@ -46,7 +46,7 @@ class MotorController(Node):
         self.odom_pub = self.create_publisher(Odometry, 'odom', 10)
         
         # Robot linear scale correction
-        self.linear_scale_correction = 0.5
+        self.linear_scale_correction = 0.1     # Was 0.5
         self.angular_scale_correction = 1
 
         # TF2 broadcaster
@@ -84,7 +84,7 @@ class MotorController(Node):
             self.current_angular_z = msg.angular.z
 
             # Separate scaling factors
-            LINEAR_SCALE = 120  # For forward/backward
+            LINEAR_SCALE = 78  # For forward/backward (This is somewhat tuned to 0.5 m/s)
             ANGULAR_SCALE = 60  # Reduced scale for turning
 
             # Scale factor for turns (reduces aggressive turning)
@@ -122,21 +122,24 @@ class MotorController(Node):
             left_velocity = (actual_linear - actual_angular * self.wheel_separation / 2.0) / self.wheel_radius
             right_velocity = (actual_linear + actual_angular * self.wheel_separation / 2.0) / self.wheel_radius
             
+            # Linear scalers (Displacement corrector (forward and backwards))
+            lin_scale = 0.25
+
             # Update all wheel positions
             # Front left and rear left
-            self.wheel_positions[0] += left_velocity * dt
-            self.wheel_positions[2] += left_velocity * dt
+            self.wheel_positions[0] += left_velocity * dt * lin_scale
+            self.wheel_positions[2] += left_velocity * dt * lin_scale
             # Front right and rear right
-            self.wheel_positions[1] += right_velocity * dt
-            self.wheel_positions[3] += right_velocity * dt
+            self.wheel_positions[1] += right_velocity * dt * lin_scale
+            self.wheel_positions[3] += right_velocity * dt * lin_scale
             
             # Update robot pose
-            delta_x = actual_linear * cos(self.theta) * dt
+            delta_x = actual_linear * cos(self.theta) * dt 
             delta_y = actual_linear * sin(self.theta) * dt
             delta_theta = actual_angular * dt
             
-            self.x += delta_x
-            self.y += delta_y
+            self.x += delta_x * lin_scale
+            self.y += delta_y * lin_scale
             self.theta += delta_theta
             
             # Publish joint states for all four wheels
@@ -153,12 +156,12 @@ class MotorController(Node):
             odom.header.frame_id = 'odom'
             odom.child_frame_id = 'base_footprint'  # Was base_link
             
-            odom.pose.pose.position.x = self.x
-            odom.pose.pose.position.y = self.y
-            odom.pose.pose.orientation.z = sin(self.theta / 2.0)
+            odom.pose.pose.position.x = self.x * lin_scale
+            odom.pose.pose.position.y = self.y * lin_scale
+            odom.pose.pose.orientation.z = sin(self.theta / 2.0)    
             odom.pose.pose.orientation.w = cos(self.theta / 2.0)
             
-            odom.twist.twist.linear.x = self.current_linear_x
+            odom.twist.twist.linear.x = self.current_linear_x   * lin_scale
             odom.twist.twist.angular.z = self.current_angular_z
             
             self.odom_pub.publish(odom)
