@@ -19,7 +19,7 @@ amcl:
     max_beams: 60
     max_particles: 2000
     min_particles: 500
-    odom_frame_id: "odom"
+    odom_frame_id: "odom"   # Change to odom/filtered
     pf_err: 0.05
     pf_z: 0.99
     recovery_alpha_fast: 0.0
@@ -83,7 +83,7 @@ controller_server:
     # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.5
+      required_movement_radius: 0.1   # Was 0.5
       movement_time_allowance: 10.0
     # Goal checker parameters
     #precise_goal_checker:
@@ -320,8 +320,8 @@ planner_server:
     costmap_update_timeout: 1.0
     GridBased:
       plugin: "nav2_navfn_planner::NavfnPlanner"
-      tolerance: 0.5
-      use_astar: false
+      tolerance: 0.1    # Was 0.5
+      use_astar: false  # Might want to change to true
       allow_unknown: true
 
 smoother_server:
@@ -477,6 +477,6 @@ loopback_simulator:
     base_frame_id: "base_footprint"  # Was base_footprint
     odom_frame_id: "odom"
     map_frame_id: "map"
-    scan_frame_id: "base_scan"  # tb4_loopback_simulator.launch.py remaps to 'rplidar_link'
+    scan_frame_id: "lidar_link" #"base_scan"  # tb4_loopback_simulator.launch.py remaps to 'rplidar_link'
     update_duration: 0.02
     enable_stamped_cmd_vel: true
