@@ -41,7 +41,7 @@ amcl:
 bt_navigator:
   ros__parameters:
     global_frame: map
-    robot_base_frame: base_link   # Was base_link
+    robot_base_frame: base_footprint   # Was base_link
     odom_topic: /odom            # Was /demo/odom
     bt_loop_duration: 10
     default_server_timeout: 20
@@ -67,11 +67,11 @@ bt_navigator:
 
 controller_server:
   ros__parameters:
-    controller_frequency: 5.0   # Was 20.0
+    controller_frequency: 20.0   # Was 5.0
     costmap_update_timeout: 0.30
-    min_x_velocity_threshold: 0.001
-    min_y_velocity_threshold: 0.5
-    min_theta_velocity_threshold: 0.001
+    min_x_velocity_threshold: 0.5
+    min_y_velocity_threshold: 0.0
+    min_theta_velocity_threshold: 1.0
     failure_tolerance: 0.3
     progress_checker_plugins: ["progress_checker"]
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
@@ -98,24 +98,24 @@ controller_server:
       yaw_goal_tolerance: 0.25
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
-      max_vel_x: 0.5
-      min_vel_x: -0.2
+      max_vel_x: 1.0
+      min_vel_x: 0.5
       max_vel_y: 0.0
       min_vel_y: 0.0
-      max_vel_theta: 1.0
-      min_vel_theta: -1.0
+      max_vel_theta: 1.5
+      min_vel_theta: 1.0
       acc_lim_x: 2.5
       acc_lim_y: 0.0
       acc_lim_theta: 3.2
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
-      vx_samples: 20
+      vx_samples: 3 # Was 20
       vy_samples: 0
-      vtheta_samples: 40
+      vtheta_samples: 5 # Was 40
       sim_time: 1.7
-      linear_granularity: 0.05
-      angular_granularity: 0.025
+      linear_granularity: 0.5  # Was 0.05
+      angular_granularity: 1.0  # Was 0.025
       transform_tolerance: 0.2
       xy_goal_tolerance: 0.25
       trans_stopped_velocity: 0.25
@@ -353,7 +353,7 @@ behavior_server:
       plugin: "nav2_behaviors::AssistedTeleop"
     local_frame: odom
     global_frame: map
-    robot_base_frame: base_link
+    robot_base_frame: base_footprint  # Was base_link
     transform_tolerance: 0.1
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
