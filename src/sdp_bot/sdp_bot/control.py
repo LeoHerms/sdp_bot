@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist, TransformStamped
+from geometry_msgs.msg import Twist, TransformStamped, TwistStamped
 from sensor_msgs.msg import JointState
 from nav_msgs.msg import Odometry
 import tf2_ros
@@ -54,7 +54,7 @@ class MotorController(Node):
 
         # Subscribe to cmd_vel topic
         self.subscription = self.create_subscription(
-            Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+            TwistStamped, 'cmd_vel', self.cmd_vel_callback, 10)
             
         # Timer for publishing updates
         self.update_timer = self.create_timer(0.02, self.update_odometry)  # 50Hz
@@ -76,7 +76,7 @@ class MotorController(Node):
             self.get_logger().error(f'ctrl_car I2C error: {str(e)}')
 
     def cmd_vel_callback(self, msg):
-        self.get_logger().info(f'Received cmd_vel - linear.x: {msg.linear.x}, angular: {msg.angular.z}')
+        self.get_logger().info(f'Received cmd_vel - linear.x: {msg.twist.linear.x}, angular: {msg.twist.angular.z}')
 
         try:
             # Store current velocities for odometry
