@@ -80,19 +80,19 @@ class MotorController(Node):
 
         try:
             # Store current velocities for odometry
-            self.current_linear_x = msg.linear.x
-            self.current_angular_z = msg.angular.z
+            self.current_linear_x = msg.twist.linear.x
+            self.current_angular_z = msg.twist.angular.z
 
             # Separate scaling factors
             LINEAR_SCALE = 78  # For forward/backward (This is somewhat tuned to 0.5 m/s)
             ANGULAR_SCALE = 60  # Reduced scale for turning
 
             # Scale factor for turns (reduces aggressive turning)
-            turn_scale = max(0.3, 0.8 - abs(msg.linear.x) / 0.5)  # Adjust dynamically
+            turn_scale = max(0.3, 0.8 - abs(msg.twist.linear.x) / 0.5)  # Adjust dynamically
 
             # Convert to left and right wheel speeds with separate scaling
-            left_speed = msg.linear.x * LINEAR_SCALE - msg.angular.z * ANGULAR_SCALE * turn_scale
-            right_speed = msg.linear.x * LINEAR_SCALE + msg.angular.z * ANGULAR_SCALE * turn_scale
+            left_speed = msg.twist.linear.x * LINEAR_SCALE - msg.twist.angular.z * ANGULAR_SCALE * turn_scale
+            right_speed = msg.twist.linear.x * LINEAR_SCALE + msg.twist.angular.z * ANGULAR_SCALE * turn_scale
 
             # Determine directions and ensure speed limits
             left_dir = 1 if left_speed >= 0 else 0

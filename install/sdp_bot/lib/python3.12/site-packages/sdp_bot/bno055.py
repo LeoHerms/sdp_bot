@@ -95,23 +95,32 @@ class BNO055Node(Node):
             
             # Set orientation (quaternion)
             msg.orientation.w = self.quaternion[0]
-            msg.orientation.x = self.quaternion[1]
-            msg.orientation.y = self.quaternion[2]
-            msg.orientation.z = self.quaternion[3]
+            msg.orientation.x = self.quaternion[1]     
+            msg.orientation.y = self.quaternion[2]      
+            msg.orientation.z = self.quaternion[3]    
             
             # Set angular velocity (gyro)
-            msg.angular_velocity.x = self.gyro[0]
-            msg.angular_velocity.y = self.gyro[1]
-            msg.angular_velocity.z = self.gyro[2]
+            msg.angular_velocity.x = self.gyro[0]       
+            msg.angular_velocity.y = self.gyro[1]      
+            msg.angular_velocity.z = self.gyro[2]       
             
             # Set linear acceleration
-            msg.linear_acceleration.x = self.accel[0]
-            msg.linear_acceleration.y = self.accel[1]
-            msg.linear_acceleration.z = self.accel[2]
+            msg.linear_acceleration.x = self.accel[0]   
+            msg.linear_acceleration.y = self.accel[1]   
+            msg.linear_acceleration.z = self.accel[2] 
             
             # Set covariance matrices (optional)
-            msg.orientation_covariance = [-1.0] * 9  # -1 indicates unknown
-            msg.angular_velocity_covariance = [-1.0] * 9
+            # msg.orientation_covariance = [-1.0] * 9  # -1 indicates unknown
+            # msg.angular_velocity_covariance = [-1.0] * 9
+            # Small covariance for orientation (high confidence)
+            msg.orientation_covariance = [0.0001, 0, 0,
+                                        0, 0.0001, 0,
+                                        0, 0, 0.0001]
+
+            # Higher covariance for angular velocity (lower confidence)
+            msg.angular_velocity_covariance = [0.001, 0, 0,
+                                            0, 0.001, 0,
+                                            0, 0, 0.001]
             msg.linear_acceleration_covariance = [-1.0] * 9
             
             self.imu_pub.publish(msg)

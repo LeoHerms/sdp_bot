@@ -1,4 +1,3 @@
 [console_scripts]
 bno055 = sdp_bot.bno055:main
 control = sdp_bot.control:main
-imu_tf_broadcaster = sdp_bot.imu_transform:main

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist, TransformStamped
+from geometry_msgs.msg import Twist, TransformStamped, TwistStamped
 from sensor_msgs.msg import JointState
 from nav_msgs.msg import Odometry
 import tf2_ros
@@ -45,12 +45,16 @@ class MotorController(Node):
         self.joint_pub = self.create_publisher(JointState, 'joint_states', 10)
         self.odom_pub = self.create_publisher(Odometry, 'odom', 10)
         
+        # Robot linear scale correction
+        self.linear_scale_correction = 0.1     # Was 0.5
+        self.angular_scale_correction = 1
+
         # TF2 broadcaster
-        self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
+        # self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
 
         # Subscribe to cmd_vel topic
         self.subscription = self.create_subscription(
-            Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+            TwistStamped, 'cmd_vel', self.cmd_vel_callback, 10)
             
         # Timer for publishing updates
         self.update_timer = self.create_timer(0.02, self.update_odometry)  # 50Hz
@@ -72,23 +76,23 @@ class MotorController(Node):
             self.get_logger().error(f'ctrl_car I2C error: {str(e)}')
 
     def cmd_vel_callback(self, msg):
-        self.get_logger().info(f'Received cmd_vel - linear.x: {msg.linear.x}, angular: {msg.angular.z}')
+        self.get_logger().info(f'Received cmd_vel - linear.x: {msg.twist.linear.x}, angular: {msg.twist.angular.z}')
 
         try:
             # Store current velocities for odometry
-            self.current_linear_x = msg.linear.x
-            self.current_angular_z = msg.angular.z
+            self.current_linear_x = msg.twist.linear.x
+            self.current_angular_z = msg.twist.angular.z
 
             # Separate scaling factors
-            LINEAR_SCALE = 120  # For forward/backward
+            LINEAR_SCALE = 78  # For forward/backward (This is somewhat tuned to 0.5 m/s)
             ANGULAR_SCALE = 60  # Reduced scale for turning
 
             # Scale factor for turns (reduces aggressive turning)
-            turn_scale = max(0.3, 0.8 - abs(msg.linear.x) / 0.5)  # Adjust dynamically
+            turn_scale = max(0.3, 0.8 - abs(msg.twist.linear.x) / 0.5)  # Adjust dynamically
 
             # Convert to left and right wheel speeds with separate scaling
-            left_speed = msg.linear.x * LINEAR_SCALE - msg.angular.z * ANGULAR_SCALE * turn_scale
-            right_speed = msg.linear.x * LINEAR_SCALE + msg.angular.z * ANGULAR_SCALE * turn_scale
+            left_speed = msg.twist.linear.x * LINEAR_SCALE - msg.twist.angular.z * ANGULAR_SCALE * turn_scale
+            right_speed = msg.twist.linear.x * LINEAR_SCALE + msg.twist.angular.z * ANGULAR_SCALE * turn_scale
 
             # Determine directions and ensure speed limits
             left_dir = 1 if left_speed >= 0 else 0
@@ -110,25 +114,32 @@ class MotorController(Node):
             current_time = self.get_clock().now()
             dt = (current_time - self.last_update_time).nanoseconds / 1e9
             
+            # Apply the scale correction
+            actual_linear = self.current_linear_x * self.linear_scale_correction
+            actual_angular = self.current_angular_z * self.angular_scale_correction
+
             # Calculate wheel velocities (all wheels on each side move at the same speed)
-            left_velocity = (self.current_linear_x - self.current_angular_z * self.wheel_separation / 2.0) / self.wheel_radius
-            right_velocity = (self.current_linear_x + self.current_angular_z * self.wheel_separation / 2.0) / self.wheel_radius
+            left_velocity = (actual_linear - actual_angular * self.wheel_separation / 2.0) / self.wheel_radius
+            right_velocity = (actual_linear + actual_angular * self.wheel_separation / 2.0) / self.wheel_radius
             
+            # Linear scalers (Displacement corrector (forward and backwards))
+            lin_scale = 0.25
+
             # Update all wheel positions
             # Front left and rear left
-            self.wheel_positions[0] += left_velocity * dt
-            self.wheel_positions[2] += left_velocity * dt
+            self.wheel_positions[0] += left_velocity * dt * lin_scale
+            self.wheel_positions[2] += left_velocity * dt * lin_scale
             # Front right and rear right
-            self.wheel_positions[1] += right_velocity * dt
-            self.wheel_positions[3] += right_velocity * dt
+            self.wheel_positions[1] += right_velocity * dt * lin_scale
+            self.wheel_positions[3] += right_velocity * dt * lin_scale
             
             # Update robot pose
-            delta_x = self.current_linear_x * cos(self.theta) * dt
-            delta_y = self.current_linear_x * sin(self.theta) * dt
-            delta_theta = self.current_angular_z * dt
+            delta_x = actual_linear * cos(self.theta) * dt 
+            delta_y = actual_linear * sin(self.theta) * dt
+            delta_theta = actual_angular * dt
             
-            self.x += delta_x
-            self.y += delta_y
+            self.x += delta_x * lin_scale
+            self.y += delta_y * lin_scale
             self.theta += delta_theta
             
             # Publish joint states for all four wheels
@@ -143,29 +154,29 @@ class MotorController(Node):
             odom = Odometry()
             odom.header.stamp = current_time.to_msg()
             odom.header.frame_id = 'odom'
-            odom.child_frame_id = 'base_link'
+            odom.child_frame_id = 'base_footprint'  # Was base_link
             
-            odom.pose.pose.position.x = self.x
-            odom.pose.pose.position.y = self.y
-            odom.pose.pose.orientation.z = sin(self.theta / 2.0)
+            odom.pose.pose.position.x = self.x * lin_scale
+            odom.pose.pose.position.y = self.y * lin_scale
+            odom.pose.pose.orientation.z = sin(self.theta / 2.0)    
             odom.pose.pose.orientation.w = cos(self.theta / 2.0)
             
-            odom.twist.twist.linear.x = self.current_linear_x
+            odom.twist.twist.linear.x = self.current_linear_x   * lin_scale
             odom.twist.twist.angular.z = self.current_angular_z
             
             self.odom_pub.publish(odom)
             
             # Broadcast transform
-            t = TransformStamped()
-            t.header.stamp = current_time.to_msg()
-            t.header.frame_id = 'odom'
-            t.child_frame_id = 'base_link'
-            t.transform.translation.x = self.x
-            t.transform.translation.y = self.y
-            t.transform.rotation.z = sin(self.theta / 2.0)
-            t.transform.rotation.w = cos(self.theta / 2.0)
+            # t = TransformStamped()
+            # t.header.stamp = current_time.to_msg()
+            # t.header.frame_id = 'odom'
+            # t.child_frame_id = 'base_link'
+            # t.transform.translation.x = self.x
+            # t.transform.translation.y = self.y
+            # t.transform.rotation.z = sin(self.theta / 2.0)
+            # t.transform.rotation.w = cos(self.theta / 2.0)
             
-            self.tf_broadcaster.sendTransform(t)
+            # self.tf_broadcaster.sendTransform(t)
             
             self.last_update_time = current_time
             
@@ -192,7 +203,7 @@ class MotorController(Node):
 def main():
     rclpy.init()
     motor_controller = MotorController()
-    motor_controller.test_motors()
+    # motor_controller.test_motors()
 
     try:
         rclpy.spin(motor_controller)

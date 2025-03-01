@@ -30,7 +30,7 @@ amcl:
     sigma_hit: 0.2
     tf_broadcast: true
     transform_tolerance: 1.0
-    update_min_a: 0.2
+    update_min_a: 0.05    # Was 0.2, but 0.05 requires less rotational movement
     update_min_d: 0.25
     z_hit: 0.5
     z_max: 0.05
@@ -42,7 +42,7 @@ bt_navigator:
   ros__parameters:
     global_frame: map
     robot_base_frame: base_link   # Was base_link
-    odom_topic: /odom            # Was /demo/odom
+    odom_topic: /odom/filtered            # Was /demo/odom
     bt_loop_duration: 10
     default_server_timeout: 20
     wait_for_service_timeout: 1000
@@ -67,23 +67,23 @@ bt_navigator:
 
 controller_server:
   ros__parameters:
-    controller_frequency: 5.0   # Was 20.0
-    costmap_update_timeout: 0.30
+    controller_frequency: 5.0   # Was 20.0 to reduce CPU usage
+    costmap_update_timeout: 10.0
     min_x_velocity_threshold: 0.001
-    min_y_velocity_threshold: 0.5
+    min_y_velocity_threshold: 0.0
     min_theta_velocity_threshold: 0.001
     failure_tolerance: 0.3
     progress_checker_plugins: ["progress_checker"]
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
     controller_plugins: ["FollowPath"]
-    odom_topic: /odom   # Was /demo/odom
+    odom_topic: /odom/filtered   # Was /demo/odom
     use_realtime_priority: false
     enable_stamped_cmd_vel: true
 
     # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.1   # Was 0.5
+      required_movement_radius: 0.3   # Was 0.5
       movement_time_allowance: 10.0
     # Goal checker parameters
     #precise_goal_checker:
@@ -98,24 +98,25 @@ controller_server:
       yaw_goal_tolerance: 0.25
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
-      max_vel_x: 0.5
-      min_vel_x: -0.2
+      debug_trajectory_details: True
+      max_vel_x: 1.0
+      min_vel_x: 0.5
       max_vel_y: 0.0
       min_vel_y: 0.0
-      max_vel_theta: 1.0
-      min_vel_theta: -1.0
+      max_vel_theta: 1.5
+      min_vel_theta: 1.0
       acc_lim_x: 2.5
       acc_lim_y: 0.0
       acc_lim_theta: 3.2
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
-      vx_samples: 20
+      vx_samples: 20 # Was 20
       vy_samples: 0
-      vtheta_samples: 40
+      vtheta_samples: 40 # Was 40
       sim_time: 1.7
-      linear_granularity: 0.05
-      angular_granularity: 0.025
+      linear_granularity: 0.05  # Was 0.05
+      angular_granularity: 0.025  # Was 0.025
       transform_tolerance: 0.2
       xy_goal_tolerance: 0.25
       trans_stopped_velocity: 0.25
@@ -227,7 +228,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.3
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -296,7 +297,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.3
       always_send_full_costmap: True
 
 # The yaml_filename does not need to be specified since it going to be set by defaults in launch.
@@ -304,7 +305,7 @@ global_costmap:
 # file & provide full path to map below. If CLI map configuration or launch default is provided, that will be used.
 map_server:
   ros__parameters:
-    yaml_filename: "/home/leonciao/my_map.yaml"
+    yaml_filename: "/home/leonciao/my_room.yaml"
 
 map_saver:
   ros__parameters:
@@ -353,7 +354,7 @@ behavior_server:
       plugin: "nav2_behaviors::AssistedTeleop"
     local_frame: odom
     global_frame: map
-    robot_base_frame: base_link
+    robot_base_frame: base_footprint  # Was base_link
     transform_tolerance: 0.1
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
@@ -377,13 +378,13 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.5, 0.0, 2.0]
-    min_velocity: [-0.5, 0.0, -2.0]
+    max_velocity: [1.0, 0.0, 2.0]
+    min_velocity: [-1.0, 0.0, -2.0]
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
-    odom_topic: "/odom" # Was /demo/odom
+    odom_topic: "/odom/filtered" # Was /demo/odom
     odom_duration: 0.1
-    deadband_velocity: [0.0, 0.0, 0.0]
+    deadband_velocity: [0.5, 0.0, 1.0]
     velocity_timeout: 1.0
     enable_stamped_cmd_vel: true
 

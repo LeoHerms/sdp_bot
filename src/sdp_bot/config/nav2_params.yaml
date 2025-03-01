@@ -41,7 +41,7 @@ amcl:
 bt_navigator:
   ros__parameters:
     global_frame: map
-    robot_base_frame: base_footprint   # Was base_link
+    robot_base_frame: base_link   # Was base_link
     odom_topic: /odom/filtered            # Was /demo/odom
     bt_loop_duration: 10
     default_server_timeout: 20
@@ -68,17 +68,17 @@ bt_navigator:
 controller_server:
   ros__parameters:
     controller_frequency: 5.0   # Was 20.0 to reduce CPU usage
-    costmap_update_timeout: 0.30
-    min_x_velocity_threshold: 0.5
+    costmap_update_timeout: 10.0
+    min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.0
-    min_theta_velocity_threshold: 1.0
+    min_theta_velocity_threshold: 0.001
     failure_tolerance: 0.3
     progress_checker_plugins: ["progress_checker"]
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
     controller_plugins: ["FollowPath"]
     odom_topic: /odom/filtered   # Was /demo/odom
     use_realtime_priority: false
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true
 
     # Progress checker parameters
     progress_checker:
@@ -98,6 +98,7 @@ controller_server:
       yaw_goal_tolerance: 0.25
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
+      debug_trajectory_details: True
       max_vel_x: 1.0
       min_vel_x: 0.5
       max_vel_y: 0.0
@@ -110,12 +111,12 @@ controller_server:
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
-      vx_samples: 3 # Was 20
+      vx_samples: 20 # Was 20
       vy_samples: 0
-      vtheta_samples: 5 # Was 40
+      vtheta_samples: 40 # Was 40
       sim_time: 1.7
-      linear_granularity: 0.5  # Was 0.05
-      angular_granularity: 1.0  # Was 0.025
+      linear_granularity: 0.05  # Was 0.05
+      angular_granularity: 0.025  # Was 0.025
       transform_tolerance: 0.2
       xy_goal_tolerance: 0.25
       trans_stopped_velocity: 0.25
@@ -304,7 +305,7 @@ global_costmap:
 # file & provide full path to map below. If CLI map configuration or launch default is provided, that will be used.
 map_server:
   ros__parameters:
-    yaml_filename: "/home/leonciao/my_living_room.yaml"
+    yaml_filename: "/home/leonciao/my_room.yaml"
 
 map_saver:
   ros__parameters:
@@ -359,7 +360,7 @@ behavior_server:
     max_rotational_vel: 1.0
     min_rotational_vel: 0.4
     rotational_acc_lim: 3.2
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true
 
 waypoint_follower:
   ros__parameters:
@@ -377,15 +378,15 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.5, 0.0, 2.0]
-    min_velocity: [-0.5, 0.0, -2.0]
+    max_velocity: [1.0, 0.0, 2.0]
+    min_velocity: [-1.0, 0.0, -2.0]
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
-    odom_topic: "/odom" # Was /demo/odom
+    odom_topic: "/odom/filtered" # Was /demo/odom
     odom_duration: 0.1
-    deadband_velocity: [0.0, 0.0, 0.0]
+    deadband_velocity: [0.5, 0.0, 1.0]
     velocity_timeout: 1.0
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true
 
 collision_monitor:
   ros__parameters:
@@ -393,7 +394,7 @@ collision_monitor:
     odom_frame_id: "odom"
     cmd_vel_in_topic: "cmd_vel_smoothed"
     cmd_vel_out_topic: "/cmd_vel" # Was /demo/cmd_vel
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true
     state_topic: "collision_monitor_state"
     transform_tolerance: 0.2
     source_timeout: 1.0
@@ -479,4 +480,4 @@ loopback_simulator:
     map_frame_id: "map"
     scan_frame_id: "lidar_link" #"base_scan"  # tb4_loopback_simulator.launch.py remaps to 'rplidar_link'
     update_duration: 0.02
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true

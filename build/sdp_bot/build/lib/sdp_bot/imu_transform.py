@@ -6,6 +6,10 @@ from geometry_msgs.msg import TransformStamped
 import tf2_ros
 from tf2_ros import TransformBroadcaster
 
+# This node listens to IMU data and broadcasts a transform from the IMU frame to the base_link frame
+# Allows the robot to move with the IMU orientation
+# Question: Should we publish this for the nav2 stack or for the robot_localization node?
+
 class ImuTfBroadcaster(Node):
     def __init__(self):
         super().__init__('imu_tf_broadcaster')
