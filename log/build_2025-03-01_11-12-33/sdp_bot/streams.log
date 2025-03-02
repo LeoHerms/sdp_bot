@@ -1,0 +1,59 @@
+[1.192s] Invoking command in '/home/leonciao/Desktop/sdp_bot/src/sdp_bot': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/leonciao/Desktop/sdp_bot/build/sdp_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sdp_bot build --build-base /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build install --record /home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log --single-version-externally-managed install_data
+[1.535s] running egg_info
+[1.535s] creating ../../build/sdp_bot/sdp_bot.egg-info
+[1.561s] writing ../../build/sdp_bot/sdp_bot.egg-info/PKG-INFO
+[1.562s] writing dependency_links to ../../build/sdp_bot/sdp_bot.egg-info/dependency_links.txt
+[1.562s] writing entry points to ../../build/sdp_bot/sdp_bot.egg-info/entry_points.txt
+[1.562s] writing top-level names to ../../build/sdp_bot/sdp_bot.egg-info/top_level.txt
+[1.562s] writing manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+[1.616s] reading manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+[1.616s] adding license file 'LICENSE'
+[1.617s] writing manifest file '../../build/sdp_bot/sdp_bot.egg-info/SOURCES.txt'
+[1.617s] running build
+[1.617s] running build_py
+[1.618s] creating /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build
+[1.618s] creating /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib
+[1.618s] creating /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot
+[1.618s] copying sdp_bot/bno055.py -> /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot
+[1.618s] copying sdp_bot/control.py -> /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot
+[1.618s] copying sdp_bot/imu_transform.py -> /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot
+[1.618s] copying sdp_bot/__init__.py -> /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot
+[1.618s] running install
+[1.626s] running install_lib
+[1.653s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot
+[1.653s] copying /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot/bno055.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot
+[1.654s] copying /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot/control.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot
+[1.654s] copying /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot/imu_transform.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot
+[1.654s] copying /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build/lib/sdp_bot/__init__.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot
+[1.654s] byte-compiling /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot/bno055.py to bno055.cpython-312.pyc
+[1.656s] byte-compiling /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot/control.py to control.cpython-312.pyc
+[1.658s] byte-compiling /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot/imu_transform.py to imu_transform.cpython-312.pyc
+[1.658s] byte-compiling /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot/__init__.py to __init__.cpython-312.pyc
+[1.659s] running install_data
+[1.659s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/ament_index
+[1.659s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/ament_index/resource_index
+[1.659s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/ament_index/resource_index/packages
+[1.659s] copying resource/sdp_bot -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/ament_index/resource_index/packages
+[1.659s] copying package.xml -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot
+[1.659s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch
+[1.659s] copying launch/display.launch.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch
+[1.660s] copying launch/ekf.launch.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch
+[1.660s] copying launch/sdp.launch.py -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/launch
+[1.660s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/rviz
+[1.660s] copying rviz/config.rviz -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/rviz
+[1.660s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/urdf
+[1.660s] copying urdf/all_bot.urdf -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/urdf
+[1.660s] copying urdf/all_bot.sdf -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/urdf
+[1.660s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/world
+[1.661s] copying world/my_world.sdf -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/world
+[1.661s] creating /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/config
+[1.661s] copying config/ekf.yaml -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/config
+[1.661s] copying config/bridge_config.yaml -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/config
+[1.661s] copying config/nav2_params.yaml -> /home/leonciao/Desktop/sdp_bot/install/sdp_bot/share/sdp_bot/config
+[1.661s] running install_egg_info
+[1.691s] Copying ../../build/sdp_bot/sdp_bot.egg-info to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages/sdp_bot-0.0.0-py3.12.egg-info
+[1.692s] running install_scripts
+[1.860s] Installing bno055 script to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/sdp_bot
+[1.860s] Installing control script to /home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/sdp_bot
+[1.860s] writing list of installed files to '/home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log'
+[1.891s] Invoked command in '/home/leonciao/Desktop/sdp_bot/src/sdp_bot' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/leonciao/Desktop/sdp_bot/build/sdp_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/leonciao/Desktop/sdp_bot/install/sdp_bot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sdp_bot build --build-base /home/leonciao/Desktop/sdp_bot/build/sdp_bot/build install --record /home/leonciao/Desktop/sdp_bot/build/sdp_bot/install.log --single-version-externally-managed install_data
