@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name + '/launch', ['launch/display.launch.py']),
         ('share/' + package_name + '/launch', ['launch/ekf.launch.py']),
         ('share/' + package_name + '/launch', ['launch/sdp.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/teleop.launch.py']),
         ('share/' + package_name + '/rviz', ['rviz/config.rviz']),
         ('share/' + package_name + '/urdf', ['urdf/all_bot.urdf']),
         ('share/' + package_name + '/urdf', ['urdf/all_bot.sdf']),
@@ -31,6 +32,7 @@ setup(
         'console_scripts': [
             'control = sdp_bot.control:main',
             'bno055 = sdp_bot.bno055:main',
+            'tele = sdp_bot.tele:main',
         ],
     },
 )
