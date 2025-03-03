@@ -35,7 +35,7 @@ bt_navigator:
 controller_server:
   ros__parameters:
     controller_frequency: 5.0  # Reduced for debugging
-    min_x_velocity_threshold: 0.001
+    min_x_velocity_threshold: 0.4
     min_y_velocity_threshold: 0.0
     min_theta_velocity_threshold: 0.001
     failure_tolerance: 1.0  # More forgiving
