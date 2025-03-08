@@ -14,12 +14,14 @@ config/nav2_params.yaml
 launch/display.launch.py
 launch/ekf.launch.py
 launch/sdp.launch.py
+launch/teleop.launch.py
 resource/sdp_bot
 rviz/config.rviz
 sdp_bot/__init__.py
 sdp_bot/bno055.py
 sdp_bot/control.py
 sdp_bot/imu_transform.py
+sdp_bot/tele.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py

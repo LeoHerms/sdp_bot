@@ -1,3 +1,4 @@
 [console_scripts]
 bno055 = sdp_bot.bno055:main
 control = sdp_bot.control:main
+tele = sdp_bot.tele:main

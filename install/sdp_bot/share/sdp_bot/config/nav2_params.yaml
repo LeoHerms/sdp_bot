@@ -41,7 +41,7 @@ amcl:
 bt_navigator:
   ros__parameters:
     global_frame: map
-    robot_base_frame: base_link   # Was base_link
+    robot_base_frame: base_footprint   # Was base_link
     odom_topic: /odom            # Was /demo/odom
     bt_loop_duration: 10
     default_server_timeout: 20
@@ -67,7 +67,7 @@ bt_navigator:
 
 controller_server:
   ros__parameters:
-    controller_frequency: 5.0   # Was 20.0 to reduce CPU usage
+    controller_frequency: 20.0   # Was 20.0 to reduce CPU usage
     costmap_update_timeout: 10.0
     min_x_velocity_threshold: 0.1
     min_y_velocity_threshold: 0.0
@@ -126,24 +126,24 @@ controller_server:
       # max_angular_accel: 3.2
       #
       plugin: "dwb_core::DWBLocalPlanner"
-      max_vel_x: 3.0
-      min_vel_x: 0.1
+      max_vel_x: 0.5
+      min_vel_x: 0.05
       max_vel_y: 0.0
       min_vel_y: 0.0
-      max_vel_theta: 2.5
-      min_vel_theta: 0.2
+      max_vel_theta: 1.0
+      min_vel_theta: 0.1
       acc_lim_x: 2.5
       acc_lim_y: 0.0
       acc_lim_theta: 3.2
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
-      vx_samples: 20 # Was 20
-      vy_samples: 0
-      vtheta_samples: 40 # Was 40
+      vx_samples: 10 # Was 20
+      vy_samples: 1
+      vtheta_samples: 20 # Was 40
       sim_time: 1.7
-      linear_granularity: 0.05  # Was 0.05
-      angular_granularity: 0.025  # Was 0.025
+      linear_granularity: 0.1  # Was 0.05
+      angular_granularity: 0.05  # Was 0.025
       transform_tolerance: 1.0
       xy_goal_tolerance: 0.25
       trans_stopped_velocity: 0.25
@@ -151,6 +151,16 @@ controller_server:
       stateful: True
       critics_timeout: 0.5
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
+      BaseObstacle.scale: 0.05
+      PathAlign.scale: 16.0
+      GoalAlign.scale: 12.0
+      PathAlign.forward_point_distance: 0.1
+      GoalAlign.forward_point_distance: 0.1
+      PathDist.scale: 16.0
+      GoalDist.scale: 12.0
+      RotateToGoal.scale: 16.0
+      RotateToGoal.slowing_factor: 5.0
+      RotateToGoal.lookahead_time: 1.0
       #
       # plugin: "nav2_mppi_controller::MPPIController"
       # time_steps: 56
@@ -256,7 +266,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.5
+        inflation_radius: 0.25
       voxel_layer:
         clear_on_max_reading: True
         plugin: "nav2_costmap_2d::VoxelLayer"
@@ -326,7 +336,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.5
+        inflation_radius: 0.25
       always_send_full_costmap: True
 
 # The yaml_filename does not need to be specified since it going to be set by defaults in launch.
@@ -383,7 +393,7 @@ behavior_server:
       plugin: "nav2_behaviors::AssistedTeleop"
     local_frame: odom
     global_frame: map
-    robot_base_frame: base_footprint  # Was base_link
+    robot_base_frame: base_link  # Was base_link
     transform_tolerance: 1.0
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
